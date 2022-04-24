@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://peqgdcchuimior:5e8b8451f021b189bbfe835e3119405df5489b02ab8431598a4b38765f3aed72@ec2-52-21-136-176.compute-1.amazonaws.com:5432/d5jr690bnbuqah
+      NODE_ENV: development
+      PORT: 3000
+    ports:
+      - "8080:3000"
+
+  postgres:
+    image: postgres:14.2
+    ports:
+      - "35000:5432"
+    environment:
+      POSTGRES_USER: peqgdcchuimior
+      POSTGRES_PASSWORD: 5e8b8451f021b189bbfe835e3119405df5489b02ab8431598a4b38765f3aed72
+      POSTGRES_DB: postgres
+      ORM_HOST: ec2-52-21-136-176.compute-1.amazonaws.com
+      ORM_PORT: 5432
+      ORM_USERNAME: peqgdcchuimior
+      ORM_PASSWORD: 5e8b8451f021b189bbfe835e3119405df5489b02ab8431598a4b38765f3aed72
+      ORM_DATABASE: d5jr690bnbuqah
